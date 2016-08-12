@@ -152,6 +152,16 @@ done
 
 #################################################################
 
+if grep "Amazon Linux" /etc/issue > /dev/null; then
+  echo "Installing Amazon Linux prerequisites"
+  yum -y update
+  yum -y install libmpc-devel openssl-devel
+else
+  echo "Not on Amazon Linux!"
+fi
+
+#################################################################
+
 # Clean up and create compilation environment
 call rm -rf $STRONGSWAN_TMP
 call mkdir -p $STRONGSWAN_TMP
